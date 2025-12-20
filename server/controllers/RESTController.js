@@ -1,8 +1,9 @@
 import BaseController from "./BaseController.js";
+import { validationResult } from "express-validator";
 
 export default class RESTController extends BaseController {
-  constructor(model, fields) {
-    super(model, fields);
+  constructor(model, fields, validator) {
+    super(model, fields, validator);
   }
 
   findAll = async (req, res) => {
@@ -27,31 +28,43 @@ export default class RESTController extends BaseController {
       res.status(500).json({ error: "Failed to fetch item" });
     }
   };
-  create = async (req, res) => {
-    try {
-      const row = await this.model.create({
-        data: this.dataParser.run(req.body),
-      });
-      console.log(row);
-      res.status(201).json({ message: "Item created successfully" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to create item" });
-    }
-  };
-  update = async (req, res) => {
-    try {
-      const row = await this.model.update({
-        where: { id: Number(req.params.id) },
-        data: this.dataParser.run(req.body),
-      });
-      console.log(row);
-      res.status(204).end();
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to update item" });
-    }
-  };
+  create = [
+    this.validator,
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) return res.status(400).json(errors.mapped());
+
+      try {
+        const row = await this.model.create({
+          data: this.dataParser.run(req.body),
+        });
+        console.log(row);
+        res.status(201).json({ message: "Item created successfully" });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to create item" });
+      }
+    },
+  ];
+  update = [
+    this.validator,
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) return res.status(400).json(errors.mapped());
+
+      try {
+        const row = await this.model.update({
+          where: { id: Number(req.params.id) },
+          data: this.dataParser.run(req.body),
+        });
+        console.log(row);
+        res.status(204).end();
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to update item" });
+      }
+    },
+  ];
   delete = async (req, res) => {
     try {
       const row = await this.model.delete({
