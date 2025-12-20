@@ -36,7 +36,7 @@ export default class RESTController extends BaseController {
       res.status(201).json({ message: "Item created successfully" });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to fetch item" });
+      res.status(500).json({ error: "Failed to create item" });
     }
   };
   update = async (req, res) => {
@@ -46,22 +46,22 @@ export default class RESTController extends BaseController {
         data: this.dataParser.run(req.body),
       });
       console.log(row);
-      res.status(204).json({ message: "Item updated successfully" });
+      res.status(204).end();
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to fetch item" });
+      res.status(500).json({ error: "Failed to update item" });
     }
   };
   delete = async (req, res) => {
     try {
-      const row = await this.model.update({
+      const row = await this.model.delete({
         where: { id: Number(req.params.id) },
       });
       console.log(row);
-      res.status(204).json({ message: "Item deleted successfully" });
+      res.status(204).end();
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to fetch item" });
+      res.status(500).json({ error: "Failed to delete item" });
     }
   };
 }
