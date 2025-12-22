@@ -4,23 +4,20 @@ import jwt from "jsonwebtoken";
 
 export default async function (req, res) {
   const { username, password } = req.body;
+
   const user = await new PrismaClient().user.findFirst({
-    where: {
-      username: username,
-    },
+    where: { username: username },
   });
-  const match = await compare(password, user.password);
-  if (match) {
-    const token = jwt.sign(
-      {
-        id: user.id,
-        username: user.username,
-      },
-      "secret",
-      { expiresIn: "1h" }
-    );
-    return res.json({ token });
-  } else {
-    return res.status(401).json({ error: "Invalid credentials" });
+  if (!user) {
+    res.status(401).json({ error: "User not found" });
+    return;
   }
+  const match = await compare(password, user.password);
+  if (!match) {
+    res.status(401).json({ error: "Incorrect credentials" });
+  }
+
+  const payload = { id: user.id, username: user.username, role: user.role };
+  const token = jwt.sign(payload, "secret");
+  res.status(200).json({ message: "Successful authentication", token: token });
 }

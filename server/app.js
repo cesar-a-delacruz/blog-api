@@ -1,17 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import passport from "passport";
 import authenticationMiddleware from "./middlewares/authenticationMiddleware.js";
 import routes from "./routes/index.js";
+import auth from "./utils/auth.js";
 
 dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: process.env.CLIENT }));
+passport.use(auth.strategy);
 
 for (const route in routes) {
   app.use(`/${routes[route].basePath}`, routes[route].router);
 }
+
 app.post("/auth", authenticationMiddleware);
 
 app.listen(process.env.APP_PORT, (error) => {
