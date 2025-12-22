@@ -2,10 +2,6 @@ import BaseController from "./BaseController.js";
 import { validationResult } from "express-validator";
 
 export default class RESTController extends BaseController {
-  constructor(model, fields, validator) {
-    super(model, fields, validator);
-  }
-
   findAll = async (req, res) => {
     try {
       const rows = await this.model.findMany();
