@@ -1,38 +1,60 @@
-import { body } from "express-validator";
+import { checkSchema } from "express-validator";
 import validationHelper from "../utils/validationHelper.js";
 
-export default [
-  body("title")
-    .trim()
-    .notEmpty()
-    .withMessage("title " + validationHelper.errorMessages.empty)
-    .isLength({ min: 10, max: 50 })
-    .withMessage("title must be between 10 and 50 characters long"),
-  body("media")
-    .optional()
-    .isURL()
-    .withMessage("media " + validationHelper.errorMessages.url),
-  body("description")
-    .trim()
-    .notEmpty()
-    .withMessage("description " + validationHelper.errorMessages.empty)
-    .isLength({ min: 2, max: 200 })
-    .withMessage("title must be between 2 and 200 characters long"),
-  ,
-  body("date")
-    .trim()
-    .notEmpty()
-    .withMessage("date " + validationHelper.errorMessages.empty)
-    .isDate()
-    .withMessage("date must follow the format yyyy-mm-dd"),
-  body("access")
-    .optional()
-    .custom((value) =>
-      validationHelper.customCallbacks.enum(value, ["PUBLIC", "PRIVATE"])
-    )
-    .withMessage("access must be either PUBLIC or PRIVATE"),
-  body("userId")
-    .trim()
-    .notEmpty()
-    .withMessage("userId " + validationHelper.empty),
-];
+const baseSchema = {
+  title: {
+    trim: true,
+    isLength: {
+      options: {
+        min: 10,
+        max: 50,
+      },
+      errorMessage: "title must be between 10 and 50 characters long",
+    },
+  },
+  media: {
+    optional: true,
+    isURL: {
+      errorMessage: "media " + validationHelper.errorMessages.url,
+    },
+  },
+  description: {
+    trim: true,
+    isLength: {
+      options: {
+        min: 2,
+        max: 200,
+      },
+      errorMessage: "description must be between 2 and 200 characters long",
+    },
+  },
+  date: {
+    trim: true,
+    isDate: {
+      errorMessage: "date must follow the format yyyy-mm-dd",
+    },
+  },
+  access: {
+    optional: true,
+    enumVals: {
+      custom: (value) =>
+        validationHelper.customCallbacks.enum(value, ["PUBLIC", "PRIVATE"]),
+      errorMessage: "access must be either PUBLIC or PRIVATE",
+    },
+  },
+};
+
+const createSchema = { ...baseSchema };
+createSchema.userId = {
+  notEmpty: {
+    errorMessage: "userId " + validationHelper.empty,
+  },
+};
+const updateSchema = { ...baseSchema };
+updateSchema.title.optional = true;
+updateSchema.description.optional = true;
+
+const createValidation = checkSchema(createSchema);
+const updateValidation = checkSchema(updateSchema);
+
+export default [createValidation, updateValidation];

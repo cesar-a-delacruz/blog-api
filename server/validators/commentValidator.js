@@ -1,25 +1,41 @@
-import { body } from "express-validator";
+import { checkSchema } from "express-validator";
 import validationHelper from "../utils/validationHelper.js";
 
-export default [
-  body("content")
-    .trim()
-    .notEmpty()
-    .withMessage("content " + validationHelper.errorMessages.empty)
-    .isLength({ min: 1, max: 100 })
-    .withMessage("content must be between 1 and 100 characters long"),
-  body("dateTime")
-    .trim()
-    .notEmpty()
-    .withMessage("dateTime " + validationHelper.errorMessages.empty)
-    .custom((value) => validationHelper.customCallbacks.dateTime(value))
-    .withMessage("dateTime must follow the format yyyy-mm-ddThh:mm:ss"),
-  body("userId")
-    .trim()
-    .notEmpty()
-    .withMessage("userId " + validationHelper.errorMessages.empty),
-  body("postId")
-    .trim()
-    .notEmpty()
-    .withMessage("postId " + validationHelper.errorMessages.empty),
-];
+const baseSchema = {
+  content: {
+    trim: true,
+    isLength: {
+      options: {
+        min: 1,
+        max: 100,
+      },
+      errorMessage: "content must be between 1 and 100 characters long",
+    },
+  },
+  dateTime: {
+    optional: true,
+    dateTime: {
+      custom: (value) => validationHelper.customCallbacks.dateTime(value),
+      errorMessage: "dateTime must follow the format yyyy-mm-ddThh:mm:ss",
+    },
+  },
+};
+
+const createSchema = { ...baseSchema };
+createSchema.userId = {
+  notEmpty: {
+    errorMessage: "userId " + validationHelper.empty,
+  },
+};
+createSchema.postId = {
+  notEmpty: {
+    errorMessage: "postId " + validationHelper.empty,
+  },
+};
+const updateSchema = { ...baseSchema };
+updateSchema.content.optional = true;
+
+const createValidation = checkSchema(createSchema);
+const updateValidation = checkSchema(updateSchema);
+
+export default [createValidation, updateValidation];
