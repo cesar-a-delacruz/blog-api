@@ -31,7 +31,7 @@ export default class UserController extends RESTController {
       if (!errors.isEmpty()) return res.status(400).json(errors.mapped());
 
       const data = this.dataParser.run(req.body);
-      data.password = await hash(data.password, 10);
+      if (data.password) data.password = await hash(data.password, 10);
 
       try {
         const row = await this.model.update({
