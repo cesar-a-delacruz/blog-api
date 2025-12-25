@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import user from "./user";
 import Default from "@/layouts/Default";
 import Auth from "@/pages/Auth";
+import Register from "@/pages/user/Register";
 
 const routes = [
-  user,
   {
     path: "*",
     element: <Navigate to={"/"} />,
@@ -13,7 +12,13 @@ const routes = [
   {
     path: "/",
     element: <Default />,
-    children: [{ path: "auth", element: <Auth /> }],
+    children: [
+      { index: true, element: <Auth /> },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
   },
 ];
 
