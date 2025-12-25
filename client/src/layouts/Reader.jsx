@@ -1,4 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
+import { logout } from "@/utils/sessionHandler.js";
 
 export default function Reader({ title }) {
   document.title = "Blog API: " + title;
@@ -12,7 +13,7 @@ export default function Reader({ title }) {
           <NavLink to={"/user/me"}>Profile</NavLink>
         </nav>
         <div className="options">
-          <button onClick={() => location.replace("/auth")}>Logout</button>
+          <button onClick={() => logout()}>Logout</button>
         </div>
       </header>
       <main>
