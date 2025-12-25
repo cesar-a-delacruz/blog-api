@@ -1,11 +1,38 @@
 import FormField from "./FormField";
-export default function CustomForm({ fields, actionText }) {
+import { useEffect, useState } from "react";
+
+export default function CustomForm({ fields, actionText, actionHandler }) {
+  const [formData, setFormData] = useState({});
+  useEffect(
+    () =>
+      setFormData(
+        fields.reduce((acc, field) => {
+          acc[field.name] = "";
+          return acc;
+        }, {})
+      ),
+    []
+  );
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    actionHandler(formData);
+  };
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
       {fields.map((field) => (
-        <FormField data={field} />
+        <FormField
+          key={field.name}
+          data={field}
+          value={formData[field.name] || ""}
+          handleChange={handleChange}
+        />
       ))}
-      <button>{actionText}</button>
+      <button type="submit">{actionText}</button>
     </form>
   );
 }

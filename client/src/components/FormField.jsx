@@ -1,17 +1,32 @@
-export default function FormField({ data }) {
+export default function FormField({ data, value, handleChange }) {
   let input;
   switch (data.type) {
     case "select":
       input = (
-        <select name={data.name} id={data.name}>
+        <select
+          name={data.name}
+          id={data.name}
+          value={value}
+          onChange={handleChange}
+        >
           {data.options.map((option) => (
-            <option value={option.value}>{option.label}</option>
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
           ))}
         </select>
       );
       break;
     default:
-      input = <input type={data.type} name={data.name} id={data.name} />;
+      input = (
+        <input
+          type={data.type}
+          name={data.name}
+          id={data.name}
+          value={value}
+          onChange={handleChange}
+        />
+      );
   }
   return (
     <>
