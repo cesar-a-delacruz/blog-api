@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Default from "@/layouts/Default";
 import Auth from "@/pages/Auth";
 import Register from "@/pages/user/Register";
+import user from "./user";
 
 const routes = [
   {
@@ -20,6 +21,7 @@ const routes = [
       },
     ],
   },
+  user,
 ];
 
 export default createBrowserRouter(routes);

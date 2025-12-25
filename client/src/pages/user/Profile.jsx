@@ -4,9 +4,9 @@ import CustomForm from "@/components/CustomForm";
 import { useEffect } from "react";
 import requestHandler from "@/utils/requestHandler";
 
-export default function New() {
+export default function Profile() {
   const setTitle = useOutletContext();
-  useEffect(() => setTitle(["Blog API", "Register"]), []);
+  useEffect(() => setTitle(["Blog API", "Profile"]), []);
 
   const handleAction = (formData) => {
     requestHandler.post(formData, "user");
@@ -15,7 +15,7 @@ export default function New() {
   return (
     <CustomForm
       fields={dataFields}
-      actionText={"Create Account"}
+      actionText={"Save Changes"}
       actionHandler={handleAction}
     />
   );

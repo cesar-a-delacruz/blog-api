@@ -1,13 +1,13 @@
-import Default from "@/layouts/Default";
-import New from "@/pages/user/New";
+import User from "@/layouts/User";
+import Profile from "@/pages/user/Profile";
 
 export default {
-  path: "user",
-  element: <Default />,
+  path: "profile",
+  element: <User />,
   children: [
     {
-      path: "new",
-      element: <New />,
+      index: true,
+      element: <Profile />,
     },
   ],
 };
