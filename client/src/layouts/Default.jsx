@@ -1,9 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { useState } from "react";
+import requestInfo from "@/utils/requestInfo";
 
 export default function Default() {
+  const token = requestInfo.token();
+  if (token) return <Navigate to={"/profile"} replace />;
+
   const [title, setTitle] = useState([]);
   document.title = title.join(": ");
+
   return (
     <>
       <header>

@@ -1,14 +1,17 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import sessionHandler from "@/utils/sessionHandler";
 import requestInfo from "@/utils/requestInfo";
 
-export default function Author() {
+export default function User() {
+  const token = requestInfo.token();
+  if (!token) return <Navigate to={"/"} replace />;
+
   const [title, setTitle] = useState([]);
   document.title = title.join(": ");
 
-  const userData = jwtDecode(requestInfo.token());
+  const userData = jwtDecode(token);
   return (
     <>
       <header>
