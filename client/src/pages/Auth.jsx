@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import dataFields from "./dataFields";
+import dataFields from "./user/dataFields";
 import CustomForm from "@/components/CustomForm";
 import { useEffect } from "react";
 import sessionHandler from "@/utils/sessionHandler";
