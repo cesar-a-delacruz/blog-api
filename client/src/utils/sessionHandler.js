@@ -1,7 +1,7 @@
 import requestInfo from "./requestInfo.js";
 export default {
-  login: async (data, path) => {
-    const response = await fetch(`${requestInfo.origin}/${path}`, {
+  login: async (data) => {
+    const response = await fetch(`${requestInfo.origin}/auth`, {
       method: "POST",
       body: new URLSearchParams(data),
     });
@@ -12,6 +12,6 @@ export default {
   },
   logout: () => {
     localStorage.removeItem("jwt");
-    location.replace("/auth");
+    location.replace("/");
   },
 };

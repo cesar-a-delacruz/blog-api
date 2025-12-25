@@ -8,8 +8,9 @@ export default function Auth() {
   const setTitle = useOutletContext();
   useEffect(() => setTitle(["Blog API", "Login"]), []);
 
-  const handleAction = (formData) => {
-    sessionHandler.login(formData, "auth");
+  const handleAction = async (formData) => {
+    await sessionHandler.login(formData);
+    location.replace("/profile");
   };
 
   return (

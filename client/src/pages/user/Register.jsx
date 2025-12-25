@@ -8,8 +8,9 @@ export default function Register() {
   const setTitle = useOutletContext();
   useEffect(() => setTitle(["Blog API", "Register"]), []);
 
-  const handleAction = (formData) => {
-    requestHandler.post(formData, "user");
+  const handleAction = async (formData) => {
+    await requestHandler.post(formData, "user");
+    location.replace("/");
   };
 
   return (

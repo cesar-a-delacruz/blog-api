@@ -9,8 +9,8 @@ export default function Default() {
       <header>
         <h1>{title[0]}</h1>
         <div className="options">
-          <button onClick={() => location.replace("/auth")}>Login</button>
-          <button onClick={() => location.replace("/user/new")}>
+          <button onClick={() => location.replace("/")}>Login</button>
+          <button onClick={() => location.replace("/register")}>
             Register
           </button>
         </div>
