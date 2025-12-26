@@ -1,14 +1,12 @@
-export default function FormField({ data, value, handleChange }) {
+import { useFormField } from "@/hooks/useFormField";
+export default function FormField({ data, value }) {
+  const fieldAttributes = useFormField(data.name, value);
   let input;
+
   switch (data.type) {
     case "select":
       input = (
-        <select
-          name={data.name}
-          id={data.name}
-          value={value}
-          onChange={handleChange}
-        >
+        <select {...fieldAttributes}>
           {data.options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -18,16 +16,9 @@ export default function FormField({ data, value, handleChange }) {
       );
       break;
     default:
-      input = (
-        <input
-          type={data.type}
-          name={data.name}
-          id={data.name}
-          value={value}
-          onChange={handleChange}
-        />
-      );
+      input = <input type={data.type} {...fieldAttributes} />;
   }
+
   return (
     <>
       <label htmlFor={data.name}>{data.label}</label>
