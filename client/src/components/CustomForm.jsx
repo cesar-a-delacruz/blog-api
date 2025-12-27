@@ -3,11 +3,12 @@ import FormField from "./FormField";
 
 export default function CustomForm({
   fields,
+  initialData,
   fetchData = { endpoint: "", id: 0 },
   actionText,
   actionHandler,
 }) {
-  const formData = useCustomForm(fields, fetchData.endpoint, fetchData.id);
+  const formData = useCustomForm(initialData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
