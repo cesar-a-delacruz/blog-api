@@ -1,5 +1,5 @@
 import { useState } from "react";
-export function useFormField(fieldName, initialValue) {
+export function useFormField(fieldName, initialValue, initialDisabled) {
   const [value, setValue] = useState(initialValue);
 
   function handleChange(e) {
@@ -10,6 +10,7 @@ export function useFormField(fieldName, initialValue) {
     name: fieldName,
     id: fieldName,
     value: value,
+    disabled: initialDisabled,
     onChange: handleChange,
   };
 }

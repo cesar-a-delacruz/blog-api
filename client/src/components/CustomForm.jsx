@@ -7,6 +7,7 @@ export default function CustomForm({
   fetchData = { endpoint: "", id: 0 },
   actionText,
   actionHandler,
+  disabled,
 }) {
   const formData = useCustomForm(initialData);
 
@@ -18,9 +19,16 @@ export default function CustomForm({
   return formData ? (
     <form onSubmit={handleSubmit}>
       {fields.map((field) => (
-        <FormField key={field.name} data={field} value={formData[field.name]} />
+        <FormField
+          key={field.name}
+          data={field}
+          value={formData[field.name]}
+          disabled={disabled}
+        />
       ))}
-      <button type="submit">{actionText}</button>
+      <button type="submit" style={{ display: disabled ? "none" : "initial" }}>
+        {actionText}
+      </button>
     </form>
   ) : (
     <h3>Loading...</h3>

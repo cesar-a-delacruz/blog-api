@@ -1,6 +1,6 @@
 import { useFormField } from "@/hooks/useFormField";
-export default function FormField({ data, value }) {
-  const fieldAttributes = useFormField(data.name, value);
+export default function FormField({ data, value, disabled }) {
+  const fieldAttributes = useFormField(data.name, value, disabled);
   let input;
 
   switch (data.type) {
