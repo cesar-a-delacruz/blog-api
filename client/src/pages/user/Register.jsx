@@ -15,7 +15,7 @@ export default function Register() {
 
   return (
     <CustomForm
-      fields={dataFields}
+      fields={dataFields.filter((field) => field.name !== "id")}
       actionText={"Create Account"}
       actionHandler={handleAction}
     />

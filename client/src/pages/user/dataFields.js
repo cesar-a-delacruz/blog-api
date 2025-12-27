@@ -14,5 +14,6 @@ export default [
       { label: "Author", value: "AUTHOR" },
       { label: "Reader", value: "READER" },
     ],
+    default: "AUTHOR",
   },
 ];
