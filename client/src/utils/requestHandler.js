@@ -47,7 +47,6 @@ export default {
       },
     });
 
-    if (!response.ok) return console.log(response);
-    return await response.json();
+    if (!response.ok) return await response.json();
   },
 };

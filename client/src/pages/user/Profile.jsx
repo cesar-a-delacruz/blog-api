@@ -42,14 +42,25 @@ export default function Profile() {
       />
       <div className="options">
         <button
-          className="edit"
           style={{ display: viewMode ? "initial" : "none" }}
           onClick={handleDisabled}
         >
           Edit
         </button>
         <button
-          className="cancel"
+          style={{ display: viewMode ? "initial" : "none" }}
+          onClick={async (e) => {
+            const question = confirm(
+              "Are you sure you wan't to delete your account?"
+            );
+            if (!question) return;
+            await requestHandler.delete(userData.id, "user");
+            sessionHandler.logout();
+          }}
+        >
+          Delete
+        </button>
+        <button
           style={{ display: viewMode ? "none" : "initial" }}
           onClick={handleDisabled}
         >
