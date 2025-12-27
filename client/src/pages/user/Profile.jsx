@@ -10,14 +10,19 @@ export default function Profile() {
   const setTitle = useOutletContext();
   useEffect(() => setTitle(["Blog API", "Profile"]), []);
 
-  const [viewMode, seViewMode] = useState(true);
+  const [viewMode, setViewMode] = useState(true);
+
   const userData = jwtDecode(requestInfo.token());
+  let newDataFields = dataFields.map((field) => {
+    if (userData[field.name]) field.default = userData[field.name];
+    return field;
+  });
 
   const handleAction = (formData) => {
     requestHandler.put(formData, "user");
   };
   const handleDisabled = () => {
-    seViewMode(!viewMode);
+    setViewMode(!viewMode);
   };
 
   return (
@@ -25,14 +30,9 @@ export default function Profile() {
       <CustomForm
         fields={
           viewMode
-            ? dataFields.filter((field) => field.name !== "password")
-            : dataFields
+            ? newDataFields.filter((field) => field.name !== "password")
+            : newDataFields
         }
-        initialData={{
-          id: userData.id,
-          username: userData.username,
-          role: userData.role,
-        }}
         actionText={"Save Changes"}
         actionHandler={handleAction}
         disabled={viewMode}

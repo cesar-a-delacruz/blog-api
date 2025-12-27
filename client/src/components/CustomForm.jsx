@@ -3,17 +3,19 @@ import FormField from "./FormField";
 
 export default function CustomForm({
   fields,
-  initialData,
   fetchData = { endpoint: "", id: 0 },
   actionText,
   actionHandler,
   disabled,
 }) {
-  const formData = useCustomForm(initialData);
+  const { formData, setFormData } = useCustomForm(fields);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     actionHandler(formData);
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return formData ? (
@@ -24,6 +26,7 @@ export default function CustomForm({
           data={field}
           value={formData[field.name]}
           disabled={disabled}
+          onChange={handleChange}
         />
       ))}
       <button type="submit" style={{ display: disabled ? "none" : "initial" }}>
