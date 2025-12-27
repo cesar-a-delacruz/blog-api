@@ -54,7 +54,7 @@ const updateSchema = { ...baseSchema };
 updateSchema.title.optional = true;
 updateSchema.description.optional = true;
 
-const createValidation = checkSchema(createSchema);
-const updateValidation = checkSchema(updateSchema);
-
-export default [createValidation, updateValidation];
+export default {
+  create: checkSchema(createSchema),
+  update: checkSchema(updateSchema),
+};

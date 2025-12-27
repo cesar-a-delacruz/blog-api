@@ -35,7 +35,7 @@ createSchema.postId = {
 const updateSchema = { ...baseSchema };
 updateSchema.content.optional = true;
 
-const createValidation = checkSchema(createSchema);
-const updateValidation = checkSchema(updateSchema);
-
-export default [createValidation, updateValidation];
+export default {
+  create: checkSchema(createSchema),
+  update: checkSchema(updateSchema),
+};

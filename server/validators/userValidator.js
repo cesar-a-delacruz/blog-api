@@ -40,7 +40,7 @@ const updateSchema = { ...baseSchema };
 updateSchema.username.optional = true;
 updateSchema.password.optional = true;
 
-const createValidation = checkSchema(createSchema);
-const updateValidation = checkSchema(updateSchema);
-
-export default [createValidation, updateValidation];
+export default {
+  create: checkSchema(createSchema),
+  update: checkSchema(updateSchema),
+};

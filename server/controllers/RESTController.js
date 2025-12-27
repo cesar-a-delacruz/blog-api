@@ -25,7 +25,7 @@ export default class RESTController extends BaseController {
     }
   };
   create = [
-    this.validator,
+    this.validator.create,
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json(errors.mapped());
@@ -43,7 +43,7 @@ export default class RESTController extends BaseController {
     },
   ];
   update = [
-    this.validator,
+    this.validator.update,
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) return res.status(400).json(errors.mapped());
