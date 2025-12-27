@@ -1,14 +1,14 @@
 import requestInfo from "./requestInfo.js";
 export default {
-  login: async (data) => {
+  login: async (credentials) => {
     const response = await fetch(`${requestInfo.origin}/auth`, {
       method: "POST",
-      body: new URLSearchParams(data),
+      body: new URLSearchParams(credentials),
     });
 
-    if (!response.ok) return console.log(response);
-    const json = await response.json();
-    localStorage.setItem("jwt", json.token);
+    const data = await response.json();
+    if (!response.ok) return alert(data.error);
+    localStorage.setItem("jwt", data.token);
   },
   logout: () => {
     localStorage.removeItem("jwt");
@@ -16,8 +16,8 @@ export default {
   },
   refresh: async (id) => {
     const response = await fetch(`${requestInfo.origin}/refresh/${id}`);
-    if (!response.ok) return console.log(response);
-    const json = await response.json();
-    localStorage.setItem("jwt", json.token);
+    const data = await response.json();
+    if (!response.ok) return alert(data.error);
+    localStorage.setItem("jwt", data.token);
   },
 };
