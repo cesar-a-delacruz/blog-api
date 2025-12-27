@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import passport from "passport";
 import authenticationMiddleware from "./middlewares/authenticationMiddleware.js";
+import refreshMiddleware from "./middlewares/refreshMiddleware.js";
 import routes from "./routes/index.js";
 import auth from "./utils/auth.js";
 
@@ -17,6 +18,7 @@ for (const route in routes) {
 }
 
 app.post("/auth", authenticationMiddleware);
+app.get("/refresh/:id", refreshMiddleware);
 
 app.listen(process.env.APP_PORT, (error) => {
   if (error) throw error;
