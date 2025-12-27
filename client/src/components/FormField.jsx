@@ -21,8 +21,12 @@ export default function FormField({ data, value }) {
 
   return (
     <>
-      <label htmlFor={data.name}>{data.label}</label>
-      <br />
+      {data.label && (
+        <>
+          <label htmlFor={data.name}>{data.label}</label>
+          <br />
+        </>
+      )}
       {input}
       <br />
     </>

@@ -1,4 +1,5 @@
 export default [
+  { name: "id", type: "hidden" },
   {
     name: "username",
     label: "Username",
