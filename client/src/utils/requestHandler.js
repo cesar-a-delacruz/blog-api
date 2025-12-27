@@ -37,8 +37,7 @@ export default {
       body: new URLSearchParams(item),
     });
 
-    if (!response.ok) return console.log(response);
-    return await response.json();
+    if (!response.ok) return await response.json();
   },
   delete: async (id, path) => {
     const response = await fetch(`${requestInfo.origin}/${path}/${id}`, {

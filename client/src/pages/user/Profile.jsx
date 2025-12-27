@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import requestHandler from "@/utils/requestHandler";
 import { jwtDecode } from "jwt-decode";
 import requestInfo from "@/utils/requestInfo";
+import sessionHandler from "@/utils/sessionHandler";
 
 export default function Profile() {
   const setTitle = useOutletContext();
@@ -18,8 +19,10 @@ export default function Profile() {
     return field;
   });
 
-  const handleAction = (formData) => {
-    requestHandler.put(formData, "user");
+  const handleAction = async (formData) => {
+    await requestHandler.put(formData, "user");
+    await sessionHandler.refresh(userData.id);
+    location.reload();
   };
   const handleDisabled = () => {
     setViewMode(!viewMode);

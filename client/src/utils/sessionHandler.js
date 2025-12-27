@@ -14,4 +14,10 @@ export default {
     localStorage.removeItem("jwt");
     location.replace("/");
   },
+  refresh: async (id) => {
+    const response = await fetch(`${requestInfo.origin}/refresh/${id}`);
+    if (!response.ok) return console.log(response);
+    const json = await response.json();
+    localStorage.setItem("jwt", json.token);
+  },
 };
