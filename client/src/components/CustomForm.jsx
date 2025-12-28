@@ -1,5 +1,6 @@
 import { useCustomForm } from "@/hooks/useCustomForm";
 import FormField from "./FormField";
+import { useState } from "react";
 
 export default function CustomForm({
   fields,
@@ -9,10 +10,12 @@ export default function CustomForm({
   disabled,
 }) {
   const { formData, setFormData } = useCustomForm(fields);
+  const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    actionHandler(formData);
+    const errors = await actionHandler(formData);
+    if (errors) setErrors(errors);
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,7 +30,9 @@ export default function CustomForm({
           value={formData[field.name]}
           disabled={disabled}
           onChange={handleChange}
-        />
+        >
+          {errors[field.name] && <span>{errors[field.name]}</span>}
+        </FormField>
       ))}
       <button type="submit" style={{ display: disabled ? "none" : "initial" }}>
         {actionText}

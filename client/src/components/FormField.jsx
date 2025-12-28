@@ -1,4 +1,10 @@
-export default function FormField({ data, value, disabled, onChange }) {
+export default function FormField({
+  data,
+  value,
+  disabled,
+  onChange,
+  children,
+}) {
   let input;
 
   switch (data.type) {
@@ -41,6 +47,8 @@ export default function FormField({ data, value, disabled, onChange }) {
         </>
       )}
       {input}
+      <br />
+      {children}
       <br />
     </>
   );

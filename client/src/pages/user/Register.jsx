@@ -9,7 +9,8 @@ export default function Register() {
   useEffect(() => setTitle(["Blog API", "Register"]), []);
 
   const handleAction = async (formData) => {
-    await requestHandler.post(formData, "user");
+    const errors = await requestHandler.post(formData, "user");
+    if (errors) return errors;
     location.replace("/");
   };
 

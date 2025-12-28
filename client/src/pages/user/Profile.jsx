@@ -20,7 +20,8 @@ export default function Profile() {
   });
 
   const handleAction = async (formData) => {
-    await requestHandler.put(formData, "user");
+    const errors = await requestHandler.put(formData, "user");
+    if (errors) return errors;
     await sessionHandler.refresh(userData.id);
     location.reload();
   };
