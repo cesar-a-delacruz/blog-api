@@ -1,15 +1,6 @@
 import requestInfo from "./requestInfo.js";
 export default {
-  getOne: async (id, path) => {
-    const response = await fetch(`${requestInfo.origin}/${path}/${id}`, {
-      headers: { Authorization: `Bearer ${requestInfo.token()}` },
-    });
-
-    const data = await response.json();
-    if (response.ok) return data;
-    return alert(data.error);
-  },
-  getAll: async (path) => {
+  get: async (path) => {
     const response = await fetch(`${requestInfo.origin}/${path}`, {
       headers: { Authorization: `Bearer ${requestInfo.token()}` },
     });
