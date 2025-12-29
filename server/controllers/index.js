@@ -2,6 +2,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 import RESTController from "./RESTController.js";
 import validators from "../validators/index.js";
 import UserController from "./UserController.js";
+import PostController from "./PostController.js";
 
 const prisma = new PrismaClient();
 export default {
@@ -14,7 +15,7 @@ export default {
     },
     validators.user
   ),
-  post: new RESTController(
+  post: new PostController(
     prisma.post,
     {
       title: "string",
