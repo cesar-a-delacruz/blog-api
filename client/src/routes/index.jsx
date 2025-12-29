@@ -4,6 +4,7 @@ import Default from "@/layouts/Default";
 import Auth from "@/pages/Auth";
 import Register from "@/pages/user/Register";
 import user from "./user";
+import post from "./post";
 
 const routes = [
   {
@@ -22,6 +23,7 @@ const routes = [
     ],
   },
   user,
+  post,
 ];
 
 export default createBrowserRouter(routes);
