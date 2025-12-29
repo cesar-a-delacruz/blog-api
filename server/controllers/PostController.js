@@ -14,4 +14,27 @@ export default class PostController extends RESTController {
       res.status(500).json({ error: "Failed to fetch items" });
     }
   };
+  findOne = async (req, res) => {
+    try {
+      const row = await this.model.findUnique({
+        where: { id: Number(req.params.id) },
+        include: {
+          comments: {
+            include: {
+              user: {
+                select: {
+                  username: true,
+                },
+              },
+            },
+          },
+        },
+      });
+      console.info(row);
+      res.status(200).json(row);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to fetch item" });
+    }
+  };
 }
