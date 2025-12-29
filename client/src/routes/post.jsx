@@ -1,5 +1,6 @@
 import User from "@/layouts/User";
 import Index from "@/pages/post/Index";
+import UserPosts from "@/pages/post/UserPosts";
 import View from "@/pages/post/View";
 
 export default {
@@ -13,6 +14,10 @@ export default {
     {
       path: ":id",
       element: <View />,
+    },
+    {
+      path: "mine",
+      element: <UserPosts />,
     },
   ],
 };
