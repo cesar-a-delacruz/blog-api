@@ -1,5 +1,10 @@
 import requestInfo from "./requestInfo.js";
+import { jwtDecode } from "jwt-decode";
 export default {
+  user: () => {
+    const token = requestInfo.token();
+    return token ? jwtDecode(token) : null;
+  },
   login: async (credentials) => {
     const response = await fetch(`${requestInfo.origin}/auth`, {
       method: "POST",

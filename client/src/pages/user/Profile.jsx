@@ -3,8 +3,6 @@ import dataFields from "./dataFields";
 import CustomForm from "@/components/CustomForm";
 import { useEffect, useState } from "react";
 import requestHandler from "@/utils/requestHandler";
-import { jwtDecode } from "jwt-decode";
-import requestInfo from "@/utils/requestInfo";
 import sessionHandler from "@/utils/sessionHandler";
 
 export default function Profile() {
@@ -13,7 +11,7 @@ export default function Profile() {
 
   const [viewMode, setViewMode] = useState(true);
 
-  const userData = jwtDecode(requestInfo.token());
+  const userData = sessionHandler.user();
   let newDataFields = dataFields.map((field) => {
     if (userData[field.name]) field.default = userData[field.name];
     return field;
