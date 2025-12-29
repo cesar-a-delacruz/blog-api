@@ -1,6 +1,7 @@
 import { useOutletContext, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Post from "@/components/Post";
+import Comment from "@/components/Comment";
 import { useData } from "@/hooks/useData";
 
 export default function Index() {
@@ -12,6 +13,9 @@ export default function Index() {
   return data ? (
     <div>
       <Post key={data.id} data={data} />
+      {data.comments.map((comment) => (
+        <Comment key={comment.id} data={comment} />
+      ))}
     </div>
   ) : (
     <h3>Loading...</h3>
