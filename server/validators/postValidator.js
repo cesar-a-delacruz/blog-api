@@ -12,12 +12,12 @@ const baseSchema = {
       errorMessage: "title must be between 10 and 50 characters long",
     },
   },
-  media: {
-    optional: true,
-    isURL: {
-      errorMessage: "media " + validationHelper.errorMessages.url,
-    },
-  },
+  // media: {
+  //   optional: true,
+  //   isURL: {
+  //     errorMessage: "media " + validationHelper.errorMessages.url,
+  //   },
+  // },
   description: {
     trim: true,
     isLength: {
@@ -26,12 +26,6 @@ const baseSchema = {
         max: 200,
       },
       errorMessage: "description must be between 2 and 200 characters long",
-    },
-  },
-  date: {
-    trim: true,
-    isDate: {
-      errorMessage: "date must follow the format yyyy-mm-dd",
     },
   },
   access: {
@@ -45,11 +39,6 @@ const baseSchema = {
 };
 
 const createSchema = { ...baseSchema };
-createSchema.userId = {
-  notEmpty: {
-    errorMessage: "userId " + validationHelper.empty,
-  },
-};
 const updateSchema = { ...baseSchema };
 updateSchema.title.optional = true;
 updateSchema.description.optional = true;
