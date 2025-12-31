@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Post from "@/components/Post";
 import { useData } from "@/hooks/useData";
 import sessionHandler from "@/utils/sessionHandler";
+import requestHandler from "@/utils/requestHandler";
 import dataFields from "./dataFields";
 import DialogForm from "@/components/DialogForm";
 import CustomForm from "@/components/CustomForm";
@@ -17,11 +18,23 @@ export default function UserPosts() {
   const { data } = useData("post?q=mine");
   const newDialog = useRef(null);
 
+  const createAction = async (formData) => {
+    formData.userId = userData.id;
+    const errors = await requestHandler.post(formData, "post");
+    console.log(errors);
+    if (errors) return errors;
+    location.replace("/post/mine");
+  };
+
   return (
     <>
       <button onClick={() => (newDialog.current.open = true)}>New Post</button>
       <DialogForm ref={newDialog}>
-        <CustomForm fields={dataFields} actionText={"Create"} />
+        <CustomForm
+          fields={dataFields.filter((field) => field.name !== "id")}
+          actionText={"Create"}
+          actionHandler={createAction}
+        />
       </DialogForm>
 
       {data ? (
