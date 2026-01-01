@@ -86,7 +86,18 @@ export default function UserPosts() {
                 >
                   Edit
                 </button>
-                <button>Delete</button>
+                <button
+                  onClick={async () => {
+                    const question = confirm(
+                      "Are you sure you wan't to delete this post?"
+                    );
+                    if (!question) return;
+                    await requestHandler.delete(item.id, "post");
+                    location.replace("/post/mine");
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             </Post>
           ))}
