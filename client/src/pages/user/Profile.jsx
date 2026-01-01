@@ -1,14 +1,12 @@
-import { useOutletContext } from "react-router-dom";
 import dataFields from "./dataFields";
 import CustomForm from "@/components/CustomForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import requestHandler from "@/utils/requestHandler";
 import sessionHandler from "@/utils/sessionHandler";
+import { useTitle } from "@/hooks/useTitle";
 
 export default function Profile() {
-  const setTitle = useOutletContext();
-  useEffect(() => setTitle(["Blog API", "Profile"]), []);
-
+  useTitle("Profile");
   const [viewMode, setViewMode] = useState(true);
 
   const userData = sessionHandler.user();

@@ -1,11 +1,9 @@
-import { useOutletContext } from "react-router-dom";
-import { useEffect } from "react";
 import Post from "@/components/Post";
 import { useData } from "@/hooks/useData";
+import { useTitle } from "@/hooks/useTitle";
 
 export default function Index() {
-  const setTitle = useOutletContext();
-  useEffect(() => setTitle(["Blog API", "Home"]), []);
+  useTitle("Home");
   const { data } = useData("post");
 
   return data ? (

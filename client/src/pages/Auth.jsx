@@ -1,12 +1,10 @@
-import { useOutletContext } from "react-router-dom";
 import dataFields from "./user/dataFields";
 import CustomForm from "@/components/CustomForm";
-import { useEffect } from "react";
 import sessionHandler from "@/utils/sessionHandler";
+import { useTitle } from "@/hooks/useTitle";
 
 export default function Auth() {
-  const setTitle = useOutletContext();
-  useEffect(() => setTitle(["Blog API", "Login"]), []);
+  useTitle("Login");
 
   const handleAction = async (formData) => {
     await sessionHandler.login(formData);
