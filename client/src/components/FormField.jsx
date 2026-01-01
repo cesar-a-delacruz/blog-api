@@ -25,6 +25,24 @@ export default function FormField({
         </select>
       );
       break;
+    case "file":
+      input = [
+        <input
+          key={0}
+          type={data.type}
+          name={data.name}
+          id={data.name}
+          disabled={disabled}
+          onChange={onChange}
+        />,
+        value && (
+          <>
+            <br />
+            <img key={1} src={value} alt={data.name} />
+          </>
+        ),
+      ];
+      break;
     default:
       input = (
         <input
