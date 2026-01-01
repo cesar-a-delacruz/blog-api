@@ -31,7 +31,7 @@ model Post {
   description String    @db.Text
   date        DateTime  @default(now()) @db.Date
   access      Access    @default(PUBLIC)
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      Int
   comments    Comment[]
 
@@ -47,8 +47,8 @@ model Comment {
   id       Int      @id @default(autoincrement())
   content  String   @db.Text
   dateTime DateTime @default(now()) @map("date_time") @db.Timestamp()
-  post     Post     @relation(fields: [postId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  post     Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   Int
   postId   Int
 
