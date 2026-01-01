@@ -4,7 +4,7 @@ import { useData } from "@/hooks/useData";
 import sessionHandler from "@/utils/sessionHandler";
 import requestHandler from "@/utils/requestHandler";
 import dataFields from "./dataFields";
-import DialogForm from "@/components/DialogForm";
+import CustomDialog from "@/components/CustomDialog";
 import CustomForm from "@/components/CustomForm";
 import { useTitle } from "@/hooks/useTitle";
 
@@ -52,20 +52,20 @@ export default function UserPosts() {
       >
         New Post
       </button>
-      <DialogForm ref={newDialog}>
+      <CustomDialog ref={newDialog}>
         <CustomForm
           fields={dataFields.filter((field) => field.name !== "id")}
           actionText={"Create"}
           actionHandler={createAction}
         />
-      </DialogForm>
-      <DialogForm ref={editDialog}>
+      </CustomDialog>
+      <CustomDialog ref={editDialog}>
         <CustomForm
           fields={editFields}
           actionText={"Update"}
           actionHandler={updateAction}
         />
-      </DialogForm>
+      </CustomDialog>
 
       {data ? (
         <div>
