@@ -13,7 +13,7 @@ export default function UserPosts() {
   if (userData.role !== "AUTHOR") return <Navigate to={"/"} replace />;
 
   useTitle("My Posts");
-  const { data } = useData("post?q=mine");
+  const { data, setData } = useData("post?q=mine");
 
   const newDialog = useRef(null);
   const editDialog = useRef(null);
@@ -23,15 +23,23 @@ export default function UserPosts() {
   const createAction = async (formData) => {
     formData.userId = userData.id;
     const errors = await requestHandler.post(formData, "post");
-    console.log(errors);
     if (errors) return errors;
     location.replace("/post/mine");
   };
   const updateAction = async (formData) => {
     const errors = await requestHandler.put(formData, "post");
-    console.log(errors);
     if (errors) return errors;
-    location.replace("/post/mine");
+
+    setData((prev) =>
+      prev.map((post) => {
+        if (post.id === formData.id) {
+          for (const key in post) {
+            post[key] = formData[key] || post[key];
+          }
+        }
+        return post;
+      })
+    );
   };
 
   return (
@@ -92,8 +100,11 @@ export default function UserPosts() {
                       "Are you sure you wan't to delete this post?"
                     );
                     if (!question) return;
+
                     await requestHandler.delete(item.id, "post");
-                    location.replace("/post/mine");
+                    setData((prev) =>
+                      prev.filter((post) => post.id !== item.id)
+                    );
                   }}
                 >
                   Delete

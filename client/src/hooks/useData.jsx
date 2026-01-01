@@ -8,5 +8,5 @@ export function useData(endpoint) {
     (async () => setData(await requestHandler.get(endpoint)))();
   }, []);
 
-  return { data };
+  return { data, setData };
 }
