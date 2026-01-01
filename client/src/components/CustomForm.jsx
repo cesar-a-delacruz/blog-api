@@ -1,16 +1,23 @@
-import { useCustomForm } from "@/hooks/useCustomForm";
 import FormField from "./FormField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CustomForm({
   fields,
-  fetchData = { endpoint: "", id: 0 },
   actionText,
   actionHandler,
   disabled,
 }) {
-  const { formData, setFormData } = useCustomForm(fields);
+  const [formData, setFormData] = useState(null);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    setFormData(
+      fields.reduce((acc, field) => {
+        acc[field.name] = field.default || "";
+        return acc;
+      }, {})
+    );
+  }, [fields]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
