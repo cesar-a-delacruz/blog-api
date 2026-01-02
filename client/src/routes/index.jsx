@@ -5,6 +5,7 @@ import Auth from "@/pages/Auth";
 import Register from "@/pages/user/Register";
 import user from "./user";
 import post from "./post";
+import comment from "./comment";
 
 const routes = [
   {
@@ -24,6 +25,7 @@ const routes = [
   },
   user,
   post,
+  comment,
 ];
 
 export default createBrowserRouter(routes);
