@@ -1,4 +1,4 @@
-export default function Post({ data, user, children }) {
+export default function Post({ data, children }) {
   return (
     <div>
       <div className="top">

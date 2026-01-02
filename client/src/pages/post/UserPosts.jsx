@@ -78,7 +78,7 @@ export default function UserPosts() {
       {data ? (
         <div>
           {data.map((item) => (
-            <Post key={item.id} data={item} user={userData}>
+            <Post key={item.id} data={item}>
               <div className="options">
                 <button
                   onClick={() => {
