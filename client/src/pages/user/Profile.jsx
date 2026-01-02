@@ -28,11 +28,7 @@ export default function Profile() {
   return (
     <>
       <CustomForm
-        fields={
-          viewMode
-            ? newDataFields.filter((field) => field.name !== "password")
-            : newDataFields
-        }
+        fields={newDataFields.filter((field) => field.name !== "password")}
         actionText={"Save Changes"}
         actionHandler={handleAction}
         disabled={viewMode}
