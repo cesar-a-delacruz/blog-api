@@ -17,7 +17,6 @@ export default async function (req, res, next) {
     const dataURI = "data:" + req.file.mimetype + ";base64," + b64;
     const file = await cloudinary.uploader.upload(dataURI, {
       folder: `blog-api/${req.user.id}/posts`,
-      public_id: req.body.name,
     });
     req.public_id = file.public_id;
     next();
