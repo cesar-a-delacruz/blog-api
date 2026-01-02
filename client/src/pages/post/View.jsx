@@ -13,7 +13,9 @@ export default function Index() {
     <div>
       <Post key={data.id} data={data} />
       {data.comments.map((comment) => (
-        <Comment key={comment.id} data={comment} />
+        <Comment key={comment.id} data={comment}>
+          <b>{comment.user.username}</b>{" "}
+        </Comment>
       ))}
     </div>
   ) : (

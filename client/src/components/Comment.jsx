@@ -1,10 +1,10 @@
-export default function Post({ data }) {
+export default function Post({ data, children }) {
   return (
     <div>
-      <p>
-        <b>{data.user.username}</b>{" "}
+      <div>
+        {children}
         <span>{new Date(data.dateTime).toLocaleString()}</span>
-      </p>
+      </div>
       <p>{data.content}</p>
     </div>
   );
