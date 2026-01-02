@@ -22,7 +22,7 @@ export default function UserPosts() {
 
   const createAction = async (formData) => {
     formData.userId = userData.id;
-    const errors = await requestHandler.post(formData, "post");
+    const errors = await requestHandler.postFile(formData, "post");
     if (errors) return errors;
     location.replace("/post/mine");
   };

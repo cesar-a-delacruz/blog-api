@@ -56,4 +56,21 @@ export default {
     const data = await response.json();
     return alert(data.error);
   },
+  postFile: async (item, path) => {
+    const formData = new FormData();
+    for (const field in item) {
+      formData.append(field, item[field]);
+    }
+    const response = await fetch(`${requestInfo.origin}/${path}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${requestInfo.token()}`,
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (response.ok) return alert(data.message);
+    else if (response.status === 500) return alert(data.error);
+  },
 };
