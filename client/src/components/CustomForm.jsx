@@ -24,9 +24,6 @@ export default function CustomForm({
     const errors = await actionHandler(formData);
     if (errors) setErrors(errors);
   };
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   return formData ? (
     <form onSubmit={handleSubmit}>
@@ -36,7 +33,7 @@ export default function CustomForm({
           data={field}
           value={formData[field.name]}
           disabled={disabled}
-          onChange={handleChange}
+          onChange={setFormData}
         >
           {errors[field.name] && <span>{errors[field.name]}</span>}
         </FormField>

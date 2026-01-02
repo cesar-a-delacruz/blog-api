@@ -7,6 +7,19 @@ export default function FormField({
 }) {
   let input;
 
+  const handleChange = (e) => {
+    onChange((prev) => {
+      const newData = { ...prev, [e.target.name]: e.target.value };
+      if (e.target.files) {
+        newData.file = e.target.files[0];
+        document.querySelector("img." + data.name).src = URL.createObjectURL(
+          newData.file
+        );
+      }
+      return newData;
+    });
+  };
+
   switch (data.type) {
     case "select":
       input = (
@@ -15,7 +28,7 @@ export default function FormField({
           id={data.name}
           value={value}
           disabled={disabled}
-          onChange={onChange}
+          onChange={handleChange}
         >
           {data.options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -33,14 +46,15 @@ export default function FormField({
           name={data.name}
           id={data.name}
           disabled={disabled}
-          onChange={onChange}
+          onChange={handleChange}
         />,
-        value && (
-          <>
-            <br />
-            <img key={1} src={value} alt={data.name} />
-          </>
-        ),
+        <img
+          key={1}
+          src={value && value.startsWith("https") ? value : null}
+          alt={data.name}
+          className={data.name}
+          style={{ display: value ? "initial" : "none" }}
+        />,
       ];
       break;
     default:
@@ -51,7 +65,7 @@ export default function FormField({
           id={data.name}
           value={value}
           disabled={disabled}
-          onChange={onChange}
+          onChange={handleChange}
         />
       );
   }
