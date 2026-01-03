@@ -1,0 +1,31 @@
+@import url("../../styles/vars.css");
+
+div.field {
+  min-width: 200px;
+  width: min-content;
+  max-width: 300px;
+}
+input,
+select,
+textarea {
+  background-color: var(--color-main-dark);
+  border-style: none;
+  color: var(--color-text);
+  border-radius: var(--border-radius);
+  height: 1.5rem;
+  width: 250px;
+}
+
+textarea {
+  max-width: 100%;
+  min-width: 200px;
+}
+
+div.field img {
+  border-radius: var(--border-radius);
+  max-width: 100%;
+  min-height: 200px;
+  max-height: 300px;
+  margin-top: 10px;
+  object-fit: cover;
+}

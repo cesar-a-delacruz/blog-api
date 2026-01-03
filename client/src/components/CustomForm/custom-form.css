@@ -1,0 +1,36 @@
+@import url("../../styles/vars.css");
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--color-main-dark-hover);
+  border-radius: var(--border-radius);
+  padding: var(--padding-container);
+  color: var(--color-text);
+}
+
+form button {
+  background: var(--gradient-button-form);
+  border-radius: var(--border-radius);
+  padding: var(--padding-button);
+  margin-top: 10px;
+  color: var(--color-text);
+  border-style: none;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: center;
+}
+form button:hover {
+  transform: var(--scale-button-hover);
+}
+form button:active {
+  transform: var(--scale-button-active);
+}
+
+form span {
+  color: var(--color-main-bright);
+  width: 200px;
+  max-width: 300px;
+}

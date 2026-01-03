@@ -15,7 +15,7 @@ header button {
   color: var(--color-text);
   border-style: none;
   border-radius: var(--border-radius);
-  padding: 7px 14px;
+  padding: var(--padding-button);
   font-weight: bold;
   cursor: pointer;
 }

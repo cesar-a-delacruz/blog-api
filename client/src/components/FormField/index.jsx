@@ -1,3 +1,4 @@
+import "./form-field.css";
 export default function FormField({
   data,
   value,
@@ -57,6 +58,18 @@ export default function FormField({
         />,
       ];
       break;
+    case "textarea":
+      input = (
+        <textarea
+          type={data.type}
+          name={data.name}
+          id={data.name}
+          value={value}
+          disabled={disabled}
+          onChange={handleChange}
+        />
+      );
+      break;
     default:
       input = (
         <input
@@ -71,7 +84,7 @@ export default function FormField({
   }
 
   return (
-    <>
+    <div className="field">
       {data.label && (
         <>
           <label htmlFor={data.name}>{data.label}</label>
@@ -81,7 +94,6 @@ export default function FormField({
       {input}
       <br />
       {children}
-      <br />
-    </>
+    </div>
   );
 }

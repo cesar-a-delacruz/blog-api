@@ -1,5 +1,6 @@
-import FormField from "./FormField";
+import FormField from "../FormField";
 import { useEffect, useState } from "react";
+import "./custom-form.css";
 
 export default function CustomForm({
   fields,
