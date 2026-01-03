@@ -1,6 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useState } from "react";
 import sessionHandler from "@/utils/sessionHandler";
+import "./default.css";
 
 export default function Default() {
   const userData = sessionHandler.user();
@@ -11,7 +12,7 @@ export default function Default() {
 
   return (
     <>
-      <header>
+      <header className="default">
         <h1>{title[0]}</h1>
         <div className="options">
           <button onClick={() => location.replace("/")}>Login</button>
@@ -20,13 +21,13 @@ export default function Default() {
           </button>
         </div>
       </header>
-      <main>
+      <main className="default">
         <h2>{title[1]}</h2>
         <Outlet context={setTitle} />
       </main>
-      <footer>
-        Developed by{" "}
-        <a href="https://github.com/cesar-a-delacruz">César De La Cruz</a>{" "}
+      <footer className="default">
+        Developed by
+        <a href="https://github.com/cesar-a-delacruz">César De La Cruz</a>
         &copy;2025
       </footer>
     </>

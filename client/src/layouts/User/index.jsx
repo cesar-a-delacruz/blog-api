@@ -1,6 +1,7 @@
 import { Outlet, NavLink, Navigate } from "react-router-dom";
 import { useState } from "react";
 import sessionHandler from "@/utils/sessionHandler";
+import "./user.css";
 
 export default function User() {
   const userData = sessionHandler.user();
@@ -11,7 +12,7 @@ export default function User() {
 
   return (
     <>
-      <header>
+      <header className="user">
         <h1>{title[0]}</h1>
         <nav>
           <NavLink to={"/post"}>Home</NavLink>
@@ -26,13 +27,13 @@ export default function User() {
           <button onClick={() => sessionHandler.logout()}>Logout</button>
         </div>
       </header>
-      <main>
+      <main className="user">
         <h2>{title[1]}</h2>
         <Outlet context={setTitle} />
       </main>
-      <footer>
-        Developed by{" "}
-        <a href="https://github.com/cesar-a-delacruz">César De La Cruz</a>{" "}
+      <footer className="user">
+        Developed by
+        <a href="https://github.com/cesar-a-delacruz">César De La Cruz</a>
         &copy;2025
       </footer>
     </>

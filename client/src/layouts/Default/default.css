@@ -1,0 +1,10 @@
+@import url("../../styles/layout.css");
+
+header.default {
+  gap: 5%;
+}
+
+header.default div.options {
+  display: flex;
+  gap: 20px;
+}
