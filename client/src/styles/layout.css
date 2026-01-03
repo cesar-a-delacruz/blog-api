@@ -1,28 +1,31 @@
+@import url("./vars.css");
+
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background-color: rgb(0, 197, 121);
+  padding: var(--padding-container);
+  background-color: var(--color-main-bright);
 }
 header h1 {
   margin: 0;
 }
 header button {
-  background: linear-gradient(rgb(28, 48, 40), rgb(55, 134, 103));
-  color: white;
+  background: var(--gradient-button);
+  color: var(--color-text);
   border-style: none;
-  border-radius: 7px;
+  border-radius: var(--border-radius);
   padding: 7px 14px;
   font-weight: bold;
   cursor: pointer;
 }
 header button:hover {
-  transform: scale(1.1);
+  transform: var(--scale-button-hover);
 }
 header button:active {
-  transform: scale(1);
+  transform: var(--scale-button-active);
 }
+
 main {
   flex: 1;
   display: flex;
@@ -30,18 +33,19 @@ main {
   justify-content: start;
   align-items: center;
   padding-top: 5%;
-  background-color: rgb(28, 48, 40);
+  background-color: var(--color-main-dark);
 }
+
 footer {
   display: flex;
-  padding: 20px;
   justify-content: center;
-  background-color: rgb(0, 197, 121);
   gap: 5px;
+  background-color: var(--color-main-bright);
+  padding: var(--padding-container);
   font-style: italic;
 }
 footer a {
-  color: white;
+  color: var(--color-text);
 }
 
 @media (orientation: portrait) {

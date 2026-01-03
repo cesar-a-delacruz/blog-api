@@ -1,0 +1,16 @@
+/* COLORS & GRADIENTS */
+:root {
+  --color-main-bright: rgb(0, 197, 121);
+  --color-main-dark: rgb(28, 48, 40);
+  --color-main-dark-hover: rgb(50, 87, 73);
+  --color-text: white;
+  --gradient-button: linear-gradient(rgb(46, 74, 63), rgb(55, 134, 103));
+}
+
+/* SPACES & SHAPES */
+:root {
+  --padding-container: 20px;
+  --border-radius: 7px;
+  --scale-button-hover: scale(1.1);
+  --scale-button-active: scale(1);
+}
