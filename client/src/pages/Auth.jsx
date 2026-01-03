@@ -13,7 +13,9 @@ export default function Auth() {
 
   return (
     <CustomForm
-      fields={dataFields.filter((field) => field.name !== "role")}
+      fields={dataFields.filter(
+        (field) => field.name !== "role" && field.name !== "id"
+      )}
       actionText={"Enter"}
       actionHandler={handleAction}
     />

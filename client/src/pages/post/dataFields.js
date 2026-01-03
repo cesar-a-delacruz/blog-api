@@ -7,7 +7,7 @@ export default [
   },
   {
     name: "description",
-    label: "Decription",
+    label: "Description",
     type: "textarea",
   },
   {
