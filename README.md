@@ -1,12 +1,12 @@
 # Blog API
 
-![screenshot](./public/screenshot.png)
+<img src="./docs/screenshot.png" width="60%" height="auto" alt="screenshot">
 
 ## Overview
 
 This project is a blog in which you can see publicposts and their comments. To access you need to register either as an author or reader and depending on the role you choose you can create your own posts or comment on other posts.
 
-**[Check it here](https://a-link.com/)**
+**[Check it here](https://cesar-a-delacruz-blog-api.netlify.app/)**
 
 ## Main Features
 
