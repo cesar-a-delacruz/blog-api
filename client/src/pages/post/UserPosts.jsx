@@ -7,6 +7,7 @@ import dataFields from "./dataFields";
 import CustomDialog from "@/components/CustomDialog";
 import CustomForm from "@/components/CustomForm";
 import { useTitle } from "@/hooks/useTitle";
+import "../../styles/page.css";
 
 export default function UserPosts() {
   const userData = sessionHandler.user();
@@ -45,6 +46,7 @@ export default function UserPosts() {
   return (
     <>
       <button
+        className="add"
         onClick={() => {
           setEditFields(
             dataFields.map((field) => {

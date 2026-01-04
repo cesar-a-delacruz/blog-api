@@ -4,6 +4,7 @@ import { useState } from "react";
 import requestHandler from "@/utils/requestHandler";
 import sessionHandler from "@/utils/sessionHandler";
 import { useTitle } from "@/hooks/useTitle";
+import "../../styles/page.css";
 
 export default function Profile() {
   useTitle("Profile");

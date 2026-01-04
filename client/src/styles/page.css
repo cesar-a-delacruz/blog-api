@@ -1,0 +1,9 @@
+button.add {
+  margin: 10px;
+}
+
+main div.options {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}

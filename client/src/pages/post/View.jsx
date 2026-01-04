@@ -9,6 +9,7 @@ import CustomDialog from "@/components/CustomDialog";
 import CustomForm from "@/components/CustomForm";
 import { useRef } from "react";
 import requestHandler from "@/utils/requestHandler";
+import "../../styles/page.css";
 
 export default function View() {
   useTitle("Post");
@@ -31,7 +32,10 @@ export default function View() {
       <Post key={data.id} data={data} />
       {userData.role === "READER" && (
         <>
-          <button onClick={() => (newDialog.current.open = true)}>
+          <button
+            className="add"
+            onClick={() => (newDialog.current.open = true)}
+          >
             Add Comment
           </button>
           <CustomDialog ref={newDialog}>
