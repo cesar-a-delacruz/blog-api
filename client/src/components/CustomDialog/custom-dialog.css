@@ -3,4 +3,6 @@
 dialog {
   background-color: var(--color-main-dark-hover);
   border-radius: var(--border-radius);
+  position: fixed;
+  top: 5%;
 }
