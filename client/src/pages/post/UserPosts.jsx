@@ -14,7 +14,7 @@ export default function UserPosts() {
   if (userData.role !== "AUTHOR") return <Navigate to={"/"} replace />;
 
   useTitle("My Posts");
-  const { data, setData } = useData("post?q=mine");
+  const { data, setData, noData } = useData("post?q=mine");
 
   const newDialog = useRef(null);
   const editDialog = useRef(null);
@@ -115,8 +115,10 @@ export default function UserPosts() {
             </Post>
           ))}
         </div>
-      ) : (
+      ) : !noData && !data ? (
         <h3>Loading...</h3>
+      ) : (
+        <h3>{noData}</h3>
       )}
     </>
   );

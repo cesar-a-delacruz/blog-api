@@ -13,7 +13,7 @@ export default function UserComments() {
   if (userData.role !== "READER") return <Navigate to={"/"} replace />;
 
   useTitle("My Comments");
-  const { data, setData } = useData("comment");
+  const { data, setData, noData } = useData("comment");
 
   const editDialog = useRef(null);
   const [editFields, setEditFields] = useState([]);
@@ -84,8 +84,10 @@ export default function UserComments() {
             </Comment>
           ))}
         </div>
-      ) : (
+      ) : !noData && !data ? (
         <h3>Loading...</h3>
+      ) : (
+        <h3>{noData}</h3>
       )}
     </>
   );
