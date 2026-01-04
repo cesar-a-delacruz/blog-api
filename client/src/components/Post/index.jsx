@@ -1,6 +1,7 @@
+import "./post.css";
 export default function Post({ data, children }) {
   return (
-    <div>
+    <div className="post">
       <div className="top">
         <h3>
           <a href={`/post/${data.id}`}>{data.title}</a>{" "}
@@ -8,8 +9,10 @@ export default function Post({ data, children }) {
         </h3>
         {children}
       </div>
-      <p>{data.description}</p>
-      {data.media && <img src={data.media} />}
+      <div className="bottom">
+        <p>{data.description}</p>
+        {data.media && <img src={data.media} />}
+      </div>
     </div>
   );
 }

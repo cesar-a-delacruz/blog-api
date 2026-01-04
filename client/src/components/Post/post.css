@@ -1,0 +1,26 @@
+@import url("../../styles/vars.css");
+
+div.post {
+  background-color: var(--color-main-dark-hover);
+  padding: var(--padding-container);
+  padding-top: 5px;
+  border-radius: var(--border-radius);
+  margin-bottom: 30px;
+}
+
+div.top span {
+  font-weight: normal;
+}
+
+div.bottom {
+  background-color: var(--color-main-dark);
+  border-radius: var(--border-radius);
+  padding: var(--padding-container);
+  padding-top: 5px;
+}
+div.bottom img {
+  max-width: 100%;
+  min-height: 200px;
+  max-height: 300px;
+  object-fit: cover;
+}
