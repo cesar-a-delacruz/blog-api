@@ -37,7 +37,7 @@ export default function UserComments() {
     <>
       <CustomDialog ref={editDialog}>
         <CustomForm
-          fields={editFields}
+          fields={editFields.filter((field) => field.name !== "postId")}
           actionText={"Update"}
           actionHandler={updateAction}
         />
