@@ -1,0 +1,21 @@
+@import url("../../styles/vars.css");
+
+dialog {
+  background-color: var(--color-main-dark-hover);
+  border-radius: var(--border-radius);
+}
+
+button.close {
+  color: var(--color-text);
+  background: var(--gradient-button);
+  border-radius: var(--border-radius);
+  border-style: none;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+button.close:hover {
+  transform: var(--scale-button-hover);
+}
+button.close:active {
+  transform: var(--scale-button-active);
+}
