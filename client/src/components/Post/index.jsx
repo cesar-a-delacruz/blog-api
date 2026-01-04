@@ -1,7 +1,7 @@
 import "./post.css";
 export default function Post({ data, children }) {
   return (
-    <div className="post">
+    <div className="component post">
       <div className="top">
         <h3>
           <a href={`/post/${data.id}`}>{data.title}</a>{" "}

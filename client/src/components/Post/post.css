@@ -1,10 +1,7 @@
 @import url("../../styles/vars.css");
+@import url("../../styles/component.css");
 
 div.post {
-  background-color: var(--color-main-dark-hover);
-  padding: var(--padding-container);
-  padding-top: 5px;
-  border-radius: var(--border-radius);
   margin-bottom: 30px;
 }
 
@@ -15,12 +12,14 @@ div.top span {
 div.bottom {
   background-color: var(--color-main-dark);
   border-radius: var(--border-radius);
-  padding: var(--padding-container);
+  padding: 10px;
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
 }
 div.bottom img {
-  max-width: 100%;
-  min-height: 200px;
+  align-self: center;
+  max-width: 400px;
   max-height: 300px;
   object-fit: cover;
 }
