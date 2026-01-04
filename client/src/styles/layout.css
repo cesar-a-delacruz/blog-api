@@ -1,4 +1,5 @@
 @import url("./vars.css");
+@import url("./shared.css");
 
 header {
   display: flex;
@@ -9,21 +10,6 @@ header {
 }
 header h1 {
   margin: 0;
-}
-header button {
-  background: var(--gradient-button);
-  color: var(--color-text);
-  border-style: none;
-  border-radius: var(--border-radius);
-  padding: var(--padding-button);
-  font-weight: bold;
-  cursor: pointer;
-}
-header button:hover {
-  transform: var(--scale-button-hover);
-}
-header button:active {
-  transform: var(--scale-button-active);
 }
 
 main {
@@ -43,9 +29,6 @@ footer {
   background-color: var(--color-main-bright);
   padding: var(--padding-container);
   font-style: italic;
-}
-footer a {
-  color: var(--color-text);
 }
 
 @media (orientation: portrait) {

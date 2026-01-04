@@ -13,20 +13,8 @@ form {
 
 form button {
   background: var(--gradient-button-form);
-  border-radius: var(--border-radius);
-  padding: var(--padding-button);
   margin-top: 10px;
-  color: var(--color-text);
-  border-style: none;
-  font-weight: bold;
-  cursor: pointer;
   align-self: center;
-}
-form button:hover {
-  transform: var(--scale-button-hover);
-}
-form button:active {
-  transform: var(--scale-button-active);
 }
 
 form span {
