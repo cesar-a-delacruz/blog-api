@@ -1,0 +1,19 @@
+@import url("../../styles/vars.css");
+
+div.comment {
+  background-color: var(--color-main-dark-hover);
+  padding: var(--padding-container);
+  padding-top: 5px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  min-width: 200px;
+  width: 300px;
+  max-width: 400px;
+}
+
+div.comment div.top {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}

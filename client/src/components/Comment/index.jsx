@@ -1,7 +1,8 @@
+import "./comment.css";
 export default function Post({ data, children }) {
   return (
-    <div>
-      <div>
+    <div className="comment">
+      <div className="top">
         {children}
         <span>{new Date(data.dateTime).toLocaleString()}</span>
       </div>
